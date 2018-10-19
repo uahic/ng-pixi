@@ -121,6 +121,46 @@
           }
         }
       }
+    },
+    "ng-pixi-lib": {
+      "root": "projects/ng-pixi-lib",
+      "sourceRoot": "projects/ng-pixi-lib/src",
+      "projectType": "library",
+      "prefix": "npl",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-pixi-lib/tsconfig.lib.json",
+            "project": "projects/ng-pixi-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/ng-pixi-lib/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-pixi-lib/src/test.ts",
+            "tsConfig": "projects/ng-pixi-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-pixi-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-pixi-lib/tsconfig.lib.json",
+              "projects/ng-pixi-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ng-pixi-lib-app"

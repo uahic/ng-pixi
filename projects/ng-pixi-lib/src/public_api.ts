@@ -3,8 +3,6 @@
  */
 
 export * from './lib/ng-pixi-lib.service';
-export * from './lib/ng-pixi.service';
-// export * from './lib/ng-pixi-stage/ng-pixi-stage.component';
 export * from './lib/ng-pixi-graphics/ng-pixi-graphics.component';
 export * from './lib/ng-pixi-viewport/ng-pixi-viewport.component';
 export * from './lib/ng-pixi-lib.module';

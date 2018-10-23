@@ -1,6 +1,5 @@
-import { Container, Application } from 'pixi.js';
-import { NGPixiService } from './ng-pixi.service';
-import { Injectable } from '@angular/core';
+import { Container, Application, interaction } from 'pixi.js';
+import { Injectable, NgZone } from '@angular/core';
 import * as Viewport from 'pixi-viewport';
 
 @Injectable({
@@ -8,33 +7,23 @@ import * as Viewport from 'pixi-viewport';
 })
 export class NgPixiViewportService {
   viewport: Viewport;
+  app: Application;
+  interaction: interaction.InteractionManager;
 
-  constructor() {
-  }
+  constructor(private ngZone: NgZone) {
+    this.ngZone.runOutsideAngular(() => {
 
-  init(app: Application,
-    screenWidth: number,
-    screenHeight: number,
-    worldWidth: number,
-    worldHeight: number,
-  ) {
-    if (!!this.viewport) {
-      throw new Error('The viewport (service) is already initialized!');
-    }
-    this.viewport = new Viewport({
-      screenWidth: screenWidth,
-      screenHeight: screenHeight,
-      worldWidth: worldWidth,
-      worldHeight: worldHeight,
-      interaction: app.renderer.plugins.interaction,
-      passiveWheel: false
+      this.app = new Application();
+      this.viewport = new Viewport({
+        screenWidth: 400,
+        screenHeight: 400,
+        worldWidth: 400,
+        worldHeight: 400,
+        interaction: this.app.renderer.plugins.interaction,
+        passiveWheel: false,
+      });
+      this.app.stage.interactive = true;
     });
-    this.viewport.drag(<any>{ clampWheel: true });
-    this.viewport.pinch();
-    this.viewport.decelerate();
-    this.viewport.wheel({ smooth: 3 });
-    app.stage.addChild(this.viewport);
-    app.start();
   }
 
 }

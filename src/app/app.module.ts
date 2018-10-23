@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NgPixiLibModule } from 'ng-pixi-lib';
+import { BrushDirective } from './brush.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BrushDirective
   ],
   imports: [
     BrowserModule,

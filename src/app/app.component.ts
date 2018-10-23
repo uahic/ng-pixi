@@ -20,10 +20,10 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.graphics.x = 400;
-      this.graphics.lineStyle(10, 0x5523FF, 1);
-    }, 4000);
+    // setTimeout(() => {
+    //   this.graphics.x = 400;
+    //   this.graphics.lineStyle(10, 0x5523FF, 1);
+    // }, 4000);
   }
 
   ngOnDestroy(): void {
